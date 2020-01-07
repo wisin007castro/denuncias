@@ -16,8 +16,8 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('/js/app.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/js/denuncias.js') }}" type="text/javascript"></script>
-<script src="{{ asset('/js/calendario.js') }}" type="text/javascript"></script>
-<script src="{{ asset('/js/reporte_encuesta.js') }}" type="text/javascript"></script>
+{{-- <script src="{{ asset('/js/calendario.js') }}" type="text/javascript"></script> --}}
+{{-- <script src="{{ asset('/js/reporte_encuesta.js') }}" type="text/javascript"></script> --}}
 <script src="{{ asset('/js/reporte_plato_genero.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('/plugins/datatables/jquery.dataTables.min.js') }}"></script>

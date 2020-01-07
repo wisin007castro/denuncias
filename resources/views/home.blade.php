@@ -22,7 +22,7 @@
 			<div style="text-align:center">
 				<h2><b>Bienvenido al sistema de denuncias</b></h2>
 				{{-- <h3><b>Administración de Recursos Humanos denuncias</b></h3> --}}
-				<img src="{{asset('img/logochacana.jpg')}}" style="width:460px;height:100px;" class="centered"/>
+				<img src="{{asset('img/logo_largo_transparente.png')}}" style="width:500px;height:250px;" class="centered"/>
 			</div>
 		</div>
 	</div>

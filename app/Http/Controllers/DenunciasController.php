@@ -14,6 +14,12 @@ use App\Tipo_Empresa;
 
 class DenunciasController extends Controller
 {
+    public function form_ver_denuncia($id_denuncia){
+        $denuncia = Denuncia::find($id_denuncia);
+        return view('formularios.form_ver_denuncia')
+        ->with('denuncia', $denuncia);
+    }
+
     public function form_register(){
         $direccion = 'General Direction of Control of Tourist Activity';
         $tipo_empresas=Tipo_Empresa::all();
@@ -46,7 +52,8 @@ class DenunciasController extends Controller
         'razon_social' => 'required',
         'dpto_hecho' => 'required',
         'decripcion' => 'required',
-        'archivo'  => 'mimes: pdf,mp4,mov,ogg,wmv,avi,jpg,jpeg,gif,png,application/octet-stream,audio/mpeg,mpga,mp3,wav | max:10240000'
+        'archivo'  => 'mimes: pdf,mp4,mov,ogg,wmv,avi,jpg,jpeg,gif,png,application/octet-stream,audio/mpeg,mpga,mp3,wav | max:2048000',
+        'g-recaptcha-response' => 'required|recaptcha',
     ];
         
     if ($request->input("idioma") == "en") {
@@ -61,6 +68,8 @@ class DenunciasController extends Controller
         'decripcion.required' => 'Description is required',
         'archivo.mimes' => 'File must be a formatted file: pdf, mp4, mov, ogg, wmv, avi, jpg, jpeg, gif, png, mpeg, mpga, mp3, wav .',
         'archivo.max' => 'The file exceeds the maximum size allowed',
+        'g-recaptcha-response.required' => 'The captcha is required.',
+        'g-recaptcha-response.required' => 'The captcha is not correct.'
         ];
     }else{
         $mensajes=['nombre.required' => 'El nombre es obligatorio',
@@ -74,6 +83,8 @@ class DenunciasController extends Controller
         'decripcion.required' => 'La descripción es obligatoria',
         'archivo.mimes' => 'El archivo debe ser un archivo con formato: pdf, mp4, mov, ogg, wmv, avi, jpg, jpeg, gif, png, mpeg, mpga, mp3, wav .',
         'archivo.max' => 'El archivo supera el tamaño máximo permitido',
+        'g-recaptcha-response.required' => 'El captcha es obligatorio.',
+        'g-recaptcha-response.recaptcha' => 'El captcha no es correcto.'
         ];
     }
 
@@ -104,13 +115,16 @@ class DenunciasController extends Controller
     // ->with('cargos', $cargos)
       
     }
-        $denuncia->nombre=$request->input("nombre");
-        $denuncia->apellidos=$request->input("apellidos");
+        // Datos del denunciante
+        $denuncia->nombre=ucfirst($request->input("nombre"));
+        $denuncia->apellidos=ucwords($request->input("apellidos"));
         $denuncia->ci=$request->input("ci");
-        $denuncia->direccion=$request->input("direccion");
+        $denuncia->direccion=ucfirst($request->input("direccion"));
         $denuncia->email=$request->input("email");
         $denuncia->dpto_denunciante=$request->input("dpto_denunciante");
         $denuncia->telefono=$request->input("telefono");
+
+        // Datos del Dununciado
         $denuncia->tipo_empresa=$request->input("tipo_empresa");
         $denuncia->link_oferta=$request->input("link_oferta");
         $denuncia->razon_social=$request->input("razon_social");
@@ -118,15 +132,15 @@ class DenunciasController extends Controller
         $denuncia->telefono_reportado=$request->input("telefono_reportado");
         $denuncia->dir_compra=$request->input("dir_compra");
         $denuncia->dpto_hecho=$request->input("dpto_hecho");
-        $denuncia->nombre_reportado=$request->input("nombre_reportado");
-        $denuncia->decripcion=$request->input("decripcion");
+        $denuncia->nombre_reportado=ucfirst($request->input("nombre_reportado"));
+        $denuncia->decripcion_hecho=ucfirst($request->input("decripcion"));
 
         if($request->file('archivo') != ""){
             $tiempo_actual =  date('Y-m-d H:i:s');
             $archivo = $request->file('archivo');
             $mime = $archivo->getMimeType();
             $extension=strtolower($archivo->getClientOriginalExtension());
-            $nuevo_nombre="userimagen-".$request->input("nombre-").$tiempo_actual.".".$extension;
+            $nuevo_nombre=$request->input("ci-").$tiempo_actual.".".$extension;
             $r1=Storage::disk('media')->put($nuevo_nombre, \File::get($archivo) );
             $rutadelaimagen="../storage/media/".$nuevo_nombre;
             if ($r1){

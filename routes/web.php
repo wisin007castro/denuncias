@@ -52,40 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
     //denuncias
     Route::get('listado_denuncias', 'DenunciasController@listado_denuncias');
     
-    Route::get('form_conteo', 'DenunciasController@form_conteo');
-    Route::get('form_conteo_mujeres', 'DenunciasController@form_conteo_mujeres');
-    Route::post('enviar_tres_v', 'DenunciasController@enviar_tres_v');
-    Route::post('enviar_cinco_v', 'DenunciasController@enviar_cinco_v');
-    Route::post('enviar_diez_v', 'DenunciasController@enviar_diez_v');
-    Route::post('enviar_tres_m', 'DenunciasController@enviar_tres_m');
-    Route::post('enviar_cinco_m', 'DenunciasController@enviar_cinco_m');
-    Route::post('enviar_diez_m', 'DenunciasController@enviar_diez_m');
-
-    Route::get('form_encuesta_gastronomia', 'DenunciasController@form_encuesta_gastronomia');
-    Route::post('enviar_gastronomia', 'DenunciasController@enviar_gastronomia');
-    Route::get('reporte_gastronomia', 'DenunciasController@reporte_gastronomia');
-    Route::get('plato_favorito', 'DenunciasController@plato_favorito');
-    Route::get('plato_mas_vendido', 'DenunciasController@plato_mas_vendido');
-    Route::get('reporte_plato_genero', 'DenunciasController@reporte_plato_genero');
-    Route::get('plato_genero', 'DenunciasController@plato_genero');
-    Route::get('asistencia', 'DenunciasController@asistencia');
-    Route::get('reporte_final', 'DenunciasController@reporte_final');
-
-    
-    Route::get('form_encuesta_visitante', 'DenunciasController@form_encuesta_visitante');
-    Route::post('enviar_visitante', 'DenunciasController@enviar_visitante');
-
-    Route::get('form_encuesta_literatura', 'DenunciasController@form_encuesta_literatura');
-    Route::post('enviar_literatura', 'DenunciasController@enviar_literatura');
-
-    Route::get('form_encuesta_turismo', 'DenunciasController@form_encuesta_turismo');
-    Route::post('enviar_turismo', 'DenunciasController@enviar_turismo');
-
-    Route::get('form_encuesta_productores', 'DenunciasController@form_encuesta_productores');
-    Route::post('enviar_productores', 'DenunciasController@enviar_productores');
-
-    Route::get('form_encuesta_artesania', 'DenunciasController@form_encuesta_artesania');
-    Route::post('enviar_artesania', 'DenunciasController@enviar_artesania');
+    Route::get('form_ver_denuncia/{id}', 'DenunciasController@form_ver_denuncia');
 
     Route::get('reporte_encuesta', 'DenunciasController@reporte_encuesta');
     Route::get('reporte_encuesta_gastronomia', 'DenunciasController@reporte_encuesta_gastronomia');

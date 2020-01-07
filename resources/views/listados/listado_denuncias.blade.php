@@ -46,19 +46,20 @@
 					<th>C.I.</th>
 					<th>Dirección</th>
 					<th>Correo Electronico</th>
-					<th>Departamento</th>
+					{{-- <th>Departamento</th>
 					<th>Telefono</th>
 					<th>Tipo Empresa</th>
 					<th>Link de Oferta</th>
 					<th>Razón Social</th>
 					<th>NIT</th>
 					<th>Teléfono</th>
-					<th>Dirección de compra</th>
+					<th>Dirección de compra</th> --}}
 					<th>Lugar del Hecho</th>
 					<th>Locación Específica</th>
 					<th>Nombre del Denunciado</th>
 					<th>Descripción del Hecho</th>
 					<th>Documentación Adjunta</th>
+					<th>Acción</th>
 
 					{{-- <th>Dependencia</th>
 					<th>Fecha ingreso</th>
@@ -68,28 +69,29 @@
 			</thead>
 	    <tbody>
 
-			@foreach($denuncias as $denuncia)
+			@foreach($denuncias as $value => $denuncia)
 			@php
 				$extension = $denuncia->extension;
 			@endphp
 		<tr role="row" class="odd">
-			<td>{{ $denuncia->id }}</td>
+			{{-- <td>{{ $denuncia->id }}</td> --}}
+			<td>{{ $value + 1 }}</td>
 			<td>{{ $denuncia->nombre }} {{ $denuncia->apellidos }}</td>
 			<td>{{ $denuncia->ci }}</td>
 			<td>{{ $denuncia->direccion }}</td>
 			<td>{{ $denuncia->email }}</td>
-			<td>{{ $denuncia->dpto_denunciante }}</td>
+			{{-- <td>{{ $denuncia->dpto_denunciante }}</td>
 			<td>{{ $denuncia->telefono }}</td>
 			<td>{{ $denuncia->tipo_empresa }}</td>
 			<td>{{ $denuncia->link_oferta }}</td>
 			<td>{{ $denuncia->razon_social }}</td>
 			<td>{{ $denuncia->nit }}</td>
 			<td>{{ $denuncia->telefono_reportado }}</td>
-			<td>{{ $denuncia->dir_compra }}</td>
+			<td>{{ $denuncia->dir_compra }}</td> --}}
 			<td>{{ $denuncia->dpto_hecho }}</td>
 			<td>{{ $denuncia->lugar_especifico }}</td>
 			<td>{{ $denuncia->nombre_reportado }}</td>
-			<td>{{ $denuncia->decripcion }}</td>
+			<td>{{ $denuncia->decripcion_hecho }}</td>
 
 			@if ($denuncia->archivo == "")
 				{{-- <img src="{{ $denuncia->nombre }}"  alt="User Image"  style="width:160px;height:160px;" id="fotografia_usuario" > --}}
@@ -108,10 +110,10 @@
 			</td>
 			@endif
 
-			{{-- <td>
-				<button type="button" class="btn btn-default btn-xs" onclick="verinfo_usuario({{  $denuncia->id_usuario }} , 4)" ><i class="fa fa-file-text"></i></button>
-				<button type="button" class="btn btn-default btn-xs" onclick="verinfo_usuario({{  $denuncia->id_usuario }} , 13)" ><i class="fa fa-calendar-check-o"></i></button>
-			</td> --}}
+			<td>
+				<button type="button" class="btn btn-warning btn" onclick="verinfo_usuario({{  $denuncia->id }} , 20)" ><i class="fa fa-file-text"></i></button>
+				<button type="button" class="btn btn-info btn" disabled><i class="fa fa-external-link"></i></button>
+			</td>
 		</tr>
 	    @endforeach
 
