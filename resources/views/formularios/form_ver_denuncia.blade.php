@@ -8,24 +8,49 @@
         <!-- About Me Box -->
         <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">About Me</h3>
+            {{-- <h3 class="box-title">Datos del denunciante</h3> --}}
+            <p style="font-size:18px;"><b>Datos del denunciante</b></p>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
-            <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
-
+            {{-- <strong><i class="fa fa-book margin-r-5"></i> Education</strong> --}}
+            <strong><i class="fa fa-user margin-r-5"></i> Nombre</strong>
             <p class="text-muted">
-              {{ $denuncia ->email }}
+              {{ $denuncia->nombre }} {{ $denuncia->apellidos}}
+            </p>
+            <hr>
+            <strong><i class="fa fa-list-alt margin-r-5"></i> Carnet o Pasaporte</strong>
+            <p class="text-muted">
+              {{ $denuncia->ci }}
+            </p>
+            <hr>
+            <strong><i class="fa fa-home margin-r-5"></i> Dirección</strong>
+            <p class="text-muted">
+              {{  $denuncia->direccion !== "" ? $denuncia->direccion : "-" }}
+            </p>
+            <hr>
+            <strong><i class="fa fa-envelope margin-r-5"></i> Correo Electrónico</strong>
+            <p class="text-muted">
+              {{ $denuncia->email }}
+            </p>
+            <hr>
+            <strong><i class="fa fa-map-marker margin-r-5"></i> Residencia del Denunciante</strong>
+            <p class="text-muted">
+              {{ $denuncia->dpto_denunciante  !== "" ? $denuncia->dpto_denunciante : "-" }}
+            </p>
+            <hr>
+            <strong><i class="fa fa-phone margin-r-5"></i> Teléfono</strong>
+            <p class="text-muted">
+              {{ $denuncia->telefono }}
             </p>
 
             <hr>
 
-            <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+            {{-- <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
             <p class="text-muted">Malibu, California</p>
 
-            <hr>
-
+            <hr> 
             <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
 
             <p>
@@ -36,11 +61,11 @@
               <span class="label label-primary">Node.js</span>
             </p>
 
-            <hr>
+            <hr> --}}
 
-            <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+            <strong><i class="fa fa-file-text margin-r-5"></i> Fecha de la denuncia</strong>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+            <p class="text-muted">{{ $denuncia->created_at }}</p>
           </div>
           <!-- /.box-body -->
         </div>
@@ -50,126 +75,96 @@
       <div class="col-md-9">
         <div class="nav-tabs-custom">
           <ul class="nav nav-tabs">
-            <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
-            <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
+            <li class="active"><a href="#activity" data-toggle="tab"><p style="font-size:18px;"><b>Datos del Denunciado</b></p></a></li>
+            {{-- <li><a href="#timeline" data-toggle="tab"><p style="font-size:18px;"><b>Documentación Adjunta</b></p></a></li> --}}
             {{-- <li><a href="#settings" data-toggle="tab">Settings</a></li> --}}
           </ul>
           <div class="tab-content">
             <div class="active tab-pane" id="activity">
               <!-- Post -->
-              <div class="post">
-                <div class="user-block">
-                  <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                      <span class="username">
-                        <a href="#">Jonathan Burke Jr.</a>
-                        <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                      </span>
-                  <span class="description">Shared publicly - 7:30 PM today</span>
+              <div>
+                <div class="col-md-6">
+                  <strong><i class="fa fa-user margin-r-5"></i> Tipo de Empresa</strong>
+                  <p class="text-muted">
+                    {{ $denuncia->tipo_empresa }}
+                  </p>
+                  <hr>
+                  <strong><i class="fa fa-list-alt margin-r-5"></i> Link de la Oferta Denunciada</strong>
+                  <p class="text-muted">
+                    {{ $denuncia->link_oferta !== "" ? $denuncia->link_oferta : "-" }}
+                  </p>
+                  <hr>
+                  <strong><i class="fa fa-home margin-r-5"></i> Razón Social o Nombre</strong>
+                  <p class="text-muted">
+                    {{ $denuncia->razon_social }}
+                  </p>
+                  <hr>
+                  <strong><i class="fa fa-envelope margin-r-5"></i> NIT</strong>
+                  <p class="text-muted">
+                    {{ $denuncia->nit !== "" ? $denuncia->nit : "-" }}
+                  </p>
+                  <hr>
+                  <strong><i class="fa fa-map-marker margin-r-5"></i> Teléfono</strong>
+                  <p class="text-muted">
+                    {{ $denuncia->telefono_reportado !== "" ? $denuncia->telefono_reportado : "-" }}
+                  </p>
+                  <hr>
+                  <strong><i class="fa fa-phone margin-r-5"></i> Dirección donde compró el producto</strong>
+                  <p class="text-muted">
+                    {{ $denuncia->dir_compra !== "" ? $denuncia->dir_compra : "-" }}
+                  </p>
+                  <hr>
+                  <strong><i class="fa fa-phone margin-r-5"></i> Ciudad - Locación específica</strong>
+                  <p class="text-muted">
+                    {{ $denuncia->dpto_hecho }} {{ $denuncia->lugar_especifico !== "" ? " - ".$denuncia->lugar_especifico : "" }}
+                  </p>
+                  
                 </div>
-                <!-- /.user-block -->
-                <p>
-                  Lorem ipsum represents a long-held tradition for designers,
-                  typographers and the like. Some people hate it and argue for
-                  its demise, but others ignore the hate as they create awesome
-                  tools to help create filler text for everyone from bacon lovers
-                  to Charlie Sheen fans.
-                </p>
-                <ul class="list-inline">
-                  <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                  <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                  </li>
-                  <li class="pull-right">
-                    <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                      (5)</a></li>
-                </ul>
 
-                <input class="form-control input-sm" type="text" placeholder="Type a comment">
-              </div>
-              <!-- /.post -->
 
-              <!-- Post -->
-              <div class="post clearfix">
-                <div class="user-block">
-                  <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
-                      <span class="username">
-                        <a href="#">Sarah Ross</a>
-                        <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                      </span>
-                  <span class="description">Sent you a message - 3 days ago</span>
+
+                <div class="">
+                  <strong><i class="fa fa-user margin-r-5"></i> Nombre del Denunciado</strong>
+                  <p class="text-muted">
+                    {{ $denuncia->nombre_reportado !== "" ? $denuncia->nombre_reportado : "-" }}
+                  </p>
+                  <hr>
+                  <strong><i class="fa fa-list-alt margin-r-5"></i> Descripción del Hecho Denunciado</strong>
+                  <p class="text-muted">
+                    {{ $denuncia->decripcion_hecho !== "" ? $denuncia->decripcion_hecho : "-" }}
+                  </p>
+                  <hr>
+                  <strong><i class="fa fa-home margin-r-5"></i> Razón Social o Nombre</strong>
+                  <p class="text-muted">
+                    {{ $denuncia->razon_social }}
+                  </p>
+                  <hr>
+                  <strong><i class="fa fa-envelope margin-r-5"></i> NIT</strong>
+                  <p class="text-muted">
+                    {{ $denuncia->nit !== "" ? $denuncia->nit : "-" }}
+                  </p>
+                  <hr>
+                  <strong><i class="fa fa-map-marker margin-r-5"></i> Teléfono</strong>
+                  <p class="text-muted">
+                    {{ $denuncia->telefono_reportado !== "" ? $denuncia->telefono_reportado : "-" }}
+                  </p>
+                  <hr>
+                  <strong><i class="fa fa-phone margin-r-5"></i> Dirección donde compró el producto</strong>
+                  <p class="text-muted">
+                    {{ $denuncia->dir_compra !== "" ? $denuncia->dir_compra : "-" }}
+                  </p>
+                  <hr>
+                  <strong><i class="fa fa-phone margin-r-5"></i> Ciudad - Locación específica</strong>
+                  <p class="text-muted">
+                    {{ $denuncia->dpto_hecho }} {{ $denuncia->lugar_especifico !== "" ? " - ".$denuncia->lugar_especifico : "" }}
+                  </p>
+                  
                 </div>
-                <!-- /.user-block -->
-                <p>
-                  Lorem ipsum represents a long-held tradition for designers,
-                  typographers and the like. Some people hate it and argue for
-                  its demise, but others ignore the hate as they create awesome
-                  tools to help create filler text for everyone from bacon lovers
-                  to Charlie Sheen fans.
-                </p>
-
-                <form class="form-horizontal">
-                  <div class="form-group margin-bottom-none">
-                    <div class="col-sm-9">
-                      <input class="form-control input-sm" placeholder="Response">
-                    </div>
-                    <div class="col-sm-3">
-                      <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <!-- /.post -->
-
-              <!-- Post -->
-              <div class="post">
-                <div class="user-block">
-                  <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
-                      <span class="username">
-                        <a href="#">Adam Jones</a>
-                        <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                      </span>
-                  <span class="description">Posted 5 photos - 5 days ago</span>
-                </div>
-                <!-- /.user-block -->
-                <div class="row margin-bottom">
-                  <div class="col-sm-6">
-                    <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-6">
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <img class="img-responsive" src="../../dist/img/photo2.png" alt="Photo">
-                        <br>
-                        <img class="img-responsive" src="../../dist/img/photo3.jpg" alt="Photo">
-                      </div>
-                      <!-- /.col -->
-                      <div class="col-sm-6">
-                        <img class="img-responsive" src="../../dist/img/photo4.jpg" alt="Photo">
-                        <br>
-                        <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
-                      </div>
-                      <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-                  </div>
-                  <!-- /.col -->
-                </div>
-                <!-- /.row -->
-
-                <ul class="list-inline">
-                  <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                  <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                  </li>
-                  <li class="pull-right">
-                    <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                      (5)</a></li>
-                </ul>
-
-                <input class="form-control input-sm" type="text" placeholder="Type a comment">
               </div>
               <!-- /.post -->
             </div>
             <!-- /.tab-pane -->
+
             <div class="tab-pane" id="timeline">
               <!-- The timeline -->
               <ul class="timeline timeline-inverse">

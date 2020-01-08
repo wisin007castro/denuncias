@@ -52,7 +52,7 @@ class DenunciasController extends Controller
         'razon_social' => 'required',
         'dpto_hecho' => 'required',
         'decripcion' => 'required',
-        'archivo'  => 'mimes: pdf,mp4,mov,ogg,wmv,avi,jpg,jpeg,gif,png,application/octet-stream,audio/mpeg,mpga,mp3,wav | max:2048000',
+        'archivo'  => 'mimes: pdf,mp4,mov,ogg,wmv,avi,jpg,jpeg,gif,png,application/octet-stream,audio/mpeg,mpga,mp3,wav | max:76800',
         'g-recaptcha-response' => 'required|recaptcha',
     ];
         
@@ -67,7 +67,7 @@ class DenunciasController extends Controller
         'dpto_hecho.required' => 'Select a department or city',
         'decripcion.required' => 'Description is required',
         'archivo.mimes' => 'File must be a formatted file: pdf, mp4, mov, ogg, wmv, avi, jpg, jpeg, gif, png, mpeg, mpga, mp3, wav .',
-        'archivo.max' => 'The file exceeds the maximum size allowed',
+        'archivo.max' => 'The file exceeds the maximum size allowed (70 MB)',
         'g-recaptcha-response.required' => 'The captcha is required.',
         'g-recaptcha-response.required' => 'The captcha is not correct.'
         ];
@@ -82,7 +82,7 @@ class DenunciasController extends Controller
         'dpto_hecho.required' => 'Selecione un departamento o ciudad del hecho',
         'decripcion.required' => 'La descripción es obligatoria',
         'archivo.mimes' => 'El archivo debe ser un archivo con formato: pdf, mp4, mov, ogg, wmv, avi, jpg, jpeg, gif, png, mpeg, mpga, mp3, wav .',
-        'archivo.max' => 'El archivo supera el tamaño máximo permitido',
+        'archivo.max' => 'El archivo supera el tamaño máximo permitido (70 MB)',
         'g-recaptcha-response.required' => 'El captcha es obligatorio.',
         'g-recaptcha-response.recaptcha' => 'El captcha no es correcto.'
         ];
@@ -132,6 +132,7 @@ class DenunciasController extends Controller
         $denuncia->telefono_reportado=$request->input("telefono_reportado");
         $denuncia->dir_compra=$request->input("dir_compra");
         $denuncia->dpto_hecho=$request->input("dpto_hecho");
+        $denuncia->lugar_especifico=ucfirst($request->input("lugar_especifico"));
         $denuncia->nombre_reportado=ucfirst($request->input("nombre_reportado"));
         $denuncia->decripcion_hecho=ucfirst($request->input("decripcion"));
 

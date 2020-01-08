@@ -58,7 +58,7 @@
 					<th>Locación Específica</th>
 					<th>Nombre del Denunciado</th>
 					<th>Descripción del Hecho</th>
-					<th>Documentación Adjunta</th>
+					<th>Adjunto</th>
 					<th>Acción</th>
 
 					{{-- <th>Dependencia</th>
@@ -95,17 +95,24 @@
 
 			@if ($denuncia->archivo == "")
 				{{-- <img src="{{ $denuncia->nombre }}"  alt="User Image"  style="width:160px;height:160px;" id="fotografia_usuario" > --}}
-				<td>Sin archivo</td>
+				<td><h2><i class="fa fa-file-o text-muted"></i></h2></td>
 			@else
 			<td>
 				@if($extension=="jpg" || $extension == "jpeg" || $extension=="png" || $extension == "gif")
-					<img src="{{ $denuncia->archivo }}"  alt="User Image"  style="width:160px;height:160px;" id="fotografia_usuario">
+					{{-- <img src="{{ $denuncia->archivo }}"  alt="User Image"  style="width:160px;height:160px;" id="fotografia_usuario"> --}}
+					<h2><i class="fa fa-file-image-o"></i></h2>
 				@endif
 				@if ($extension=="mp4" || $extension == "3gp" || $extension == "avi" || $extension == "wmv")
-					<video width="320" height="240" controls src="{{ $denuncia->archivo }}"></video>
+					{{-- <video width="320" height="240" controls src="{{ $denuncia->archivo }}"></video> --}}
+					<h2><i class="fa fa-file-video-o"></i></h2>
 				@endif
 				@if($extension=="mp3" || $extension == "wav" || $extension == "ogg")
-					<audio src="{{ $denuncia->archivo }}" preload="none" controls></audio>
+					{{-- <audio src="{{ $denuncia->archivo }}" preload="none" controls></audio> --}}
+					<h2><i class="fa fa-file-audio-o"></i></h2>
+				@endif
+				@if($extension=="pdf" || $extension == "doc" || $extension == "docx")
+					{{-- <audio src="{{ $denuncia->archivo }}" preload="none" controls></audio> --}}
+					<h2><i class="fa fa-file-pdf-o"></i></h2>
 			@endif
 			</td>
 			@endif
@@ -126,7 +133,7 @@
 
 
 
-{{-- {{ $denuncias->links() }} --}}
+{{ $denuncias->links() }}
 
 @if(count($denuncias)==0)
 

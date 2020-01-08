@@ -166,17 +166,23 @@
     <ul class="treeview-menu">
         @can('crear_solicitud')
         <li><a href="{{url('/listado_denuncias')}}">Listado de Denuncias</a></li>
+        <li><a href="{{url('/form_registro')}}">Formulario</a></li>
+
         {{-- <li><a href="{{url('/reporte_final')}}">Reporte final</a></li> --}}
         {{-- <li><a href="{{url('/reporte_plato_genero')}}">Plato preferido por sexo</a></li> --}}
         @endcan
         @can('aprobar_solicitud')
         {{-- <li><a href="{{url('/listado_suspension_unidad')}}">Suspension por Aprobar</a></li> --}}
         <li><a href="{{url('/listado_denuncias')}}">Listado de Denuncias</a></li>
+        <li><a href="{{url('/form_registro')}}">Formulario</a></li>
+
         {{-- <li><a href="{{url('/reporte_final')}}">Reporte final</a></li> --}}
         @endcan
         @can('autorizar_solicitud')
         {{-- <li><a href="{{url('listado_suspension_rr_hh')}}">Suspension por Autorizar</a></li> --}}
         <li><a href="{{url('/listado_denuncias')}}">Listado de Denuncias</a></li>
+        <li><a href="{{url('/form_registro')}}">Formulario</a></li>
+
         {{-- <li><a href="{{url('/reporte_final')}}">Reporte final</a></li> --}}
         @endcan
         <li><a href="#"></a></li>

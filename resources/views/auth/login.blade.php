@@ -7,12 +7,12 @@
         <div class="container" > 
           
                 <div class="col-sm-12 " style="background-color:rgba(0, 0, 0, 0.35); height: 60px; " >
-                   {{-- <a class="mybtn-social pull-right" href="{{ url('/register') }}">
-                       Register
-                  </a> --}}
-
-                  <a class="mybtn-social pull-right" href="{{ url('/login') }}">
+                   <a class="mybtn-social pull-right" href="{{ url('/login') }}">
                        Login
+                  </a>
+
+                  <a class="mybtn-social pull-right" href="{{ url('/form_registro') }}">
+                       Formulario
                   </a>
                
                 </div>
@@ -22,7 +22,7 @@
               <div class="col-sm-6 col-sm-offset-3 myform-cont" >
                     <div class="myform-top">
                         <div class="myform-top-left">
-                         <img  src="{{ url('img/minculturas_logo.png') }} " class="img-responsive logo" />
+                         <img  src="{{ url('img/logo_largo.jpg') }} " class="img-responsive logo" />
                           <h3>Ingresa a nuestro sitio.</h3>
                             <p>Digita tu email y contraseña:</p>
                         </div>
